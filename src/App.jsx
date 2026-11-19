@@ -630,18 +630,28 @@ function Casos() {
 /* ---------- demo ---------- */
 function Demo() {
   return (
-    <section id="demo" className="solid sheet" style={{ scrollMarginTop: 72 }}>
-      <div className="wrap row-pad demo-in">
-        <div className="demo-copy" data-reveal>
-          <div className="eyebrow">Demo gratuita</div>
-          <h2>{DEMO.title[0]}<em>{DEMO.title[1]}</em>{DEMO.title[2]}</h2>
-          <p>{DEMO.text}</p>
-          <a className="btn btn-green btn-lg" href={whatsappUrl}><Icon name="chat" />{DEMO.cta}</a>
-        </div>
-        <div className="demo-steps">
-          {DEMO.steps.map((s, k) => (
-            <div className="dstep" key={s} data-reveal style={{ '--d': `${0.1 + k * 0.12}s` }}><span className="n">{k + 1}</span><span>{s}</span></div>
-          ))}
+    <section id="demo" className="solid sheet demo-row" style={{ scrollMarginTop: 72 }}>
+      <div className="wrap">
+        <div className="demo" data-reveal>
+          <div aria-hidden="true">
+            <div className="blob" style={{ right: -80, top: -120, width: 480, height: 480, background: '#ff6b35', opacity: 0.55, filter: 'blur(90px)' }} />
+            <div className="blob" style={{ right: 120, bottom: -160, width: 440, height: 440, background: '#e84393', opacity: 0.5, filter: 'blur(90px)' }} />
+            <div className="blob" style={{ left: -140, bottom: -180, width: 440, height: 440, background: '#6c5ce7', opacity: 0.5, filter: 'blur(100px)' }} />
+            <GrainOverlay id="g-demo" />
+          </div>
+          <div className="demo-in">
+            <div className="demo-copy">
+              <div className="eyebrow">Demo gratuita</div>
+              <h2>{DEMO.title[0]}<em>{DEMO.title[1]}</em>{DEMO.title[2]}</h2>
+              <p>{DEMO.text}</p>
+              <a className="btn btn-green btn-lg" href={whatsappUrl}><Icon name="chat" />{DEMO.cta}</a>
+            </div>
+            <div className="demo-steps">
+              {DEMO.steps.map((s, k) => (
+                <div className="glass" key={s}><span className="n">{k + 1}</span><span>{s}</span></div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
