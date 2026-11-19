@@ -35,12 +35,17 @@ jobs:
           </IfModule>
           HT
           sed -i 's/^          //' dist/.htaccess
-      - name: Publicar dist en deploy
+      - name: Publicar dist en deploy (historial continuo)
         run: |
-          cd dist
+          URL="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          mkdir /tmp/deploy && cd /tmp/deploy
           git init -q -b deploy
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+          git remote add origin "$URL"
+          if git fetch -q --depth=1 origin deploy; then git reset -q FETCH_HEAD; fi
+          cp -a "$GITHUB_WORKSPACE"/dist/. /tmp/deploy/
           git add -A
+          if git diff --cached --quiet; then echo "Sin cambios"; exit 0; fi
           git commit -qm "Build ${GITHUB_SHA}"
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" deploy
+          git push origin deploy
