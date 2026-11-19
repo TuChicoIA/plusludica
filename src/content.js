@@ -8,7 +8,7 @@ export const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICom
 
 export const NAV = [
   { href: '#como', label: 'Cómo trabajamos' },
-  { href: '#montamos', label: 'Qué montamos' },
+  { href: '#ayuda', label: 'Cómo te ayudamos' },
   { href: '#casos', label: 'Casos' },
   { href: '#faq', label: 'FAQ' },
 ]
